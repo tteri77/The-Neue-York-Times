@@ -1,0 +1,55 @@
+<!doctype html>
+%html
+	%head
+		%title
+			The Neue York Times
+		= csrf_meta_tag
+		= stylesheet_link_tag "960", "fonts", "application"
+		= javascript_include_tag "application"
+		
+	%body
+		#body-wrapper
+			
+			#page-wrapper
+				
+				%header#primary-header-wrapper
+					%header#primary-header
+						%hgroup#primary-title-wrapper
+							%h1#primary-title
+								The Neue York Times
+						%nav#slider-controls
+							#left-control.control
+							#pause-control.control
+							#right-control.control
+				
+				#main-area-wrapper
+					#main-area
+						#items-wrapper
+							#items
+								
+								- counter = 0
+								- @items.each do |item|
+									%div{ :class => "item-wrapper", :id => "item-#{counter}-wrapper" }
+										%div{ :class => "item", :id => "item-#{counter}" }
+											
+											%header.item-header
+												%hgroup
+													%h1
+														%a{ :href => "#{item.url}"}
+															= item.title
+												
+											.item-main-area
+												%p
+													= item.description
+											
+											%footer.item-metadata
+												%ul
+													- item.tags.each do |tag|
+														%li
+															= tag.name
+																
+				%footer#primary-footer-wrapper
+					%footer#primary-footer
+													
+		/%p
+		/	= @string
