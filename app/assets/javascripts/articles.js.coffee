@@ -2,6 +2,20 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
+	# THE DRAGGER
+	###########################################################
+
+	$('#slider-controls').draggable()
+	
+	
+	
+	
+	
+	
+	
+	
+	# THE SLIDER
+	############################################################
 	
 	# SET EVERYTHING
 	# Define the variables.
@@ -61,37 +75,28 @@ $ ->
 			automate()
 		,5000 )
 	
+	
+	# Generic control listeners
+		$('.control').live "mousedown", ->
+			$(this).css
+				"background-color:": "rgb(100,100,100)"
+		$('.control').live "mouseup", ->
+			$(this).css
+				"background-color": "rgba(50,50,50,.5)"
+			
 	# Left click listeners
 	$('#left-control').click ->
 		slide_right()
 		clearTimeout( t )
-	$('#left-control').live "mousedown", ->
-		$(this).css
-			"border-right": "25px solid rgb(100,100,100)"
-	$('#left-control').live "mouseup", ->
-		$(this).css
-			"border-right": "25px solid rgba(50,50,50,.5)"
 		
 	# right click listeners	
 	$('#right-control').click ->
 		slide_left()
 		clearTimeout( t )
-	$('#right-control').live "mousedown", ->
-		$(this).css
-			"border-left": "25px solid rgb(100,100,100)"
-	$('#right-control').live "mouseup", ->
-		$(this).css
-			"border-left": "25px solid rgba(50,50,50,.5)"
 	
 	# pause button listeners	
 	$('#pause-control').click ->
-			slide()
-			clearTimeout( t )
-	$('#pause-control').live "mousedown", ->
-		$(this).css
-			"border-right": "7.5px solid rgb(100,100,100)"
-			"border-left": "7.5px solid rgb(100,100,100)"
-	$('#pause-control').live "mouseup", ->
-		$(this).css
-			"border-right": "7.5px solid rgba(50,50,50,.5)",
-			"border-left": "7.5px solid rgba(50,50,50,.5)"
+		slide()
+		clearTimeout( t )
+	$('#play-control').click ->
+		automate()

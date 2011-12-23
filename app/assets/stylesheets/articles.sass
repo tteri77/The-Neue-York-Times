@@ -15,7 +15,7 @@ li
 
 /* Upper-Level Styles */
 body
-	background-color: rgb(50,50,50)
+	background-color: rgb(255,255,255)
 	
 #body-wrapper
 	background-image: url("images/bg.png")
@@ -25,14 +25,11 @@ body
 	//border: 10px solid rgba(255,255,255,.5)
 	//padding: 10px
 	margin: 0 auto
-	padding-top: 25px
+	//padding-top: 25px
 	width: 960px
 
 /* General Styles */
 h1
-	font-family: "optima"
-	font-weight: 400
-	text-align: center
 	text-transform: uppercase
 	
 p
@@ -45,87 +42,68 @@ li
 	font-family: "bell MT"
 	font-weight: 800
 
-$top-bar-header-height: 50px
-header#top-bar-wrapper,
-header#top-bar
-	height: $top-bar-header-height
-header#top-bar-wrapper
-	background-color: rgb(0,0,0)
-	box-shadow: 0px 1px 10px
-	position: fixed
-	top: 0
-	z-index: 2
-	width: 100%
-	header#top-bar
-		margin: 0 auto
-		width: 960px
+/* The Slider Controls */
+nav#slider-controls
+	background-color: rgba(50,50,50,.15)
+	position: absolute
+	top: 50px
+	right: 50px
+	height: 140px
+	width: 140px
+	z-index: 5
+	.control-wrapper
+		margin: 20px
+		.control
+			background-color: rgba(50,50,50,.5)
+			border-radius: 25px
+			cursor: pointer
+			float: left
+			height: 50px
+			width: 50px
+		.control:last-child
+			margin-right: 0
+		#left-control
+		#right-control
+		#pause-control
+		#play-control
+
+
+
+
 
 /* The Primary Header */
-$primary-header-height: 100px
+$primary-header-height: 50px
 header#priamry-header-wrapper,
-header#primary-header,
-hgroup#primary-title-wrapper,
-h1#primary-title
+header#primary-header
 	height: $primary-header-height
+	hgroup#primary-title-wrapper,
+	h1#primary-title
+		width: 960px
+		height: $primary-header-height
 header#primary-header-wrapper
-	border: 10px solid rgba(50,50,50,.5)
-	box-shadow: 0px 1px 10px
-	margin-top: 50px
 	header#primary-header
-		background-color: rgba(255,255,255,.5)
 		hgroup#primary-title-wrapper
 			h1
 				color: rgb(50,50,50)
 				font-family: "engravers mt"
-				font-size: $primary-header-height / 2
+				font-size: $primary-header-height * 3 / 4
+				font-weight: 400
 				line-height: $primary-header-height / 2
 				padding-top: 25px
 				text-align: center
-				height: 100px
-	$control-color: rgba(50,50,50,.5)
-	nav#slider-controls
-		margin-left: -125px
-		position: absolute
-		left: 50%
-		height: 52.5px
-		width: 250px
-		.control-wrapper
-			background-color: rgb(100,150,200)
-			border-radius: 25px
-			width: 50px
-			height: 50px
-			.control
-				cursor: pointer
-				float: left
-				margin-right: 87.5px
-				height: 0
-				width: 0
-			.control:last-child
-				margin-right: 0
-			#left-control
-				border-top: 25px solid transparent
-				border-right: 25px solid $control-color
-				border-bottom: 25px solid transparent
-			#right-control
-				border-top: 25px solid transparent
-				border-bottom: 25px solid transparent
-				border-left: 25px solid $control-color
-			#pause-control
-				border-right: 7.5px solid $control-color
-				border-left: 7.5px solid $control-color
-				width: 10px
-				height: 50px
-			
+				
+				
 				
 /* The Main Area */
-$main-area-height: 400px
+$main-area-height: 600px
 #main-area-wrapper
-	border: 10px solid rgba(50,50,50,.5)
+	border: 10px solid rgba(50,60,70,.5)
 	box-shadow: 0px 1px 10px
 	margin: 25px 0
+	z-index: 2
 	
 #main-area
-	background-color: rgba(255,255,255,.5)
+	background-color: rgb(245,250,255)
 
 #main-area,
 #items-wrapper,
@@ -140,7 +118,11 @@ $main-area-height: 400px
 			hgroup
 				h1
 					color: rgb(25,50,75)
-					font-size: 70px
+					font-size: 90px
+					font-family: "bebas neue"
+					font-weight: 800
+					letter-spacing: 10px
+					text-align: left
 		.item-main-area
 			padding: 25px 0
 			p
@@ -150,7 +132,7 @@ $main-area-height: 400px
 			p:first-letter
 				color: rgb(25,50,75)
 				float: left
-				font-family: "optima"
+				font-family: "bebas neue"
 				font-size: 400%
 				font-weight: 400
 		footer
@@ -166,4 +148,7 @@ $primary-footer-height: 500px
 footer#primary-footer-wrapper
 	background-color: rgb(0,0,0)
 	box-shadow: 0px 1px 10px
+	position: fixed
+	top: 500px
+	width: 100%
 	height: $primary-footer-height

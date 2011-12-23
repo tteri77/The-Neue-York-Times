@@ -5,14 +5,21 @@
 			The Neue York Times
 		= csrf_meta_tag
 		= stylesheet_link_tag "application"
-		= javascript_include_tag "application"
+		= javascript_include_tag "application", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"
 		
 	%body
 		#body-wrapper
 	
-			%header#top-bar-wrapper
-				%header#top-bar			
-	
+			%nav#slider-controls
+				#left-control-wrapper.control-wrapper
+					#left-control.control
+				#right-control-wrapper.control-wrapper
+					#right-control.control
+				#pause-control-wrapper.control-wrapper
+					#pause-control.control
+				#play-control-wrapper.control-wrapper
+					#play-control.control
+			
 			#page-wrapper
 				
 				%header#primary-header-wrapper
@@ -20,10 +27,6 @@
 						%hgroup#primary-title-wrapper
 							%h1#primary-title
 								The Neue York Times
-						/%nav#slider-controls
-						/	#left-control.control
-						/	#pause-control.control
-						/	#right-control.control
 				
 				#main-area-wrapper
 					#main-area
