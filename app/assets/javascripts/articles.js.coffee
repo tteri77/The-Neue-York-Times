@@ -9,11 +9,6 @@ $ ->
 	
 	
 	
-	
-	
-	
-	
-	
 	# THE SLIDER
 	############################################################
 	
@@ -77,12 +72,13 @@ $ ->
 	
 	
 	# Generic control listeners
-		$('.control').live "mousedown", ->
-			$(this).css
-				"background-color:": "rgb(100,100,100)"
-		$('.control').live "mouseup", ->
-			$(this).css
-				"background-color": "rgba(50,50,50,.5)"
+	$('.control').live "mousedown", ->
+		$(this).css
+			"background-color:": "rgb(100,100,100)"
+		console.log "mousedown"
+	$('.control').live "mouseup", ->
+		$(this).css
+			"background-color": "rgba(50,50,50,.5)"
 			
 	# Left click listeners
 	$('#left-control').click ->
@@ -98,5 +94,13 @@ $ ->
 	$('#pause-control').click ->
 		slide()
 		clearTimeout( t )
+	
+	# play button listeners
 	$('#play-control').click ->
 		automate()
+		
+	# refresh button listeners
+	$('#refresh-control').click ->
+		items.remove()
+		$.get( '/articles/render_items' ).html
+		

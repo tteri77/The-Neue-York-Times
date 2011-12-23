@@ -1,0 +1,23 @@
+#items-wrapper
+	#items
+		
+		- counter = 0
+		- @items.each do |item|
+			%div{ :class => "item-wrapper", :id => "item-#{counter}-wrapper" }
+				%div{ :class => "item", :id => "item-#{counter}" }
+					
+					%header.item-header
+						%hgroup
+							%h1
+								%a{ :href => "#{item.url}"}
+									= item.title
+						
+					.item-main-area
+						%p
+							= item.description
+					
+					%footer.item-metadata
+						%ul
+							- item.tags.each do |tag|
+								%li
+									= tag.name

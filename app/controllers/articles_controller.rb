@@ -21,10 +21,11 @@ class Tag
 end
 
 class ArticlesController < ApplicationController
-
-  def index   
+  respond_to :html, :js
+  
+  def get_items
     # create the @items instance variable.
-    @items = []
+    items = []
     
     # go and get the xml.
     url = "http://feeds.nytimes.com/nyt/rss/HomePage" # define the url.
@@ -44,15 +45,21 @@ class ArticlesController < ApplicationController
         tag.name = subelement.text
         tag.url = subelement.attributes[ "domain" ]
         item.tags.push( tag )
-      end
+      end  
       
-        
-      
-      @items.push( item )
+      items.push( item )
     end
-
-    @string = doc.root
+    return items
+  end
+  
     
+  def index      
+    @items = get_items
+  end
+  
+  def render_items
+    @items = get_items
+    return render :partial => "slider", :object => @items
   end
   
 end

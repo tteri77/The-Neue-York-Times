@@ -4,21 +4,13 @@
 		%title
 			The Neue York Times
 		= csrf_meta_tag
-		= stylesheet_link_tag "application"
+		= stylesheet_link_tag "fonts", "application"
 		= javascript_include_tag "application", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"
 		
 	%body
 		#body-wrapper
 	
-			%nav#slider-controls
-				#left-control-wrapper.control-wrapper
-					#left-control.control
-				#right-control-wrapper.control-wrapper
-					#right-control.control
-				#pause-control-wrapper.control-wrapper
-					#pause-control.control
-				#play-control-wrapper.control-wrapper
-					#play-control.control
+			= render :partial => "slider_controls" 
 			
 			#page-wrapper
 				
@@ -30,29 +22,8 @@
 				
 				#main-area-wrapper
 					#main-area
-						#items-wrapper
-							#items
-								
-								- counter = 0
-								- @items.each do |item|
-									%div{ :class => "item-wrapper", :id => "item-#{counter}-wrapper" }
-										%div{ :class => "item", :id => "item-#{counter}" }
-											
-											%header.item-header
-												%hgroup
-													%h1
-														%a{ :href => "#{item.url}"}
-															= item.title
-												
-											.item-main-area
-												%p
-													= item.description
-											
-											%footer.item-metadata
-												%ul
-													- item.tags.each do |tag|
-														%li
-															= tag.name
+
+						= render :partial => "slider", :object => @items
 																
 			%footer#primary-footer-wrapper
 				%footer#primary-footer
