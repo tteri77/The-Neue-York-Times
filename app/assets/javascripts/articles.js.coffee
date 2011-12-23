@@ -10,7 +10,8 @@ $ ->
 	items_slider = $('#items')
 	items_wrapper = $('#items-wrapper')
 	number_of_items = items.length
-	item_width = 960
+	item_width = 860
+	item_wrapper_width = 960
 	item_height = 600
 		
 	# Add css, so that if there is no javascript,
@@ -18,7 +19,7 @@ $ ->
 	items_wrapper.css
 		"overflow": "hidden"
 	items_slider.css
-		"width": number_of_items * item_width
+		"width": number_of_items * item_wrapper_width
 	items.css
 		"float": "left",
 		"width": item_width,
@@ -37,7 +38,7 @@ $ ->
 		current_position = 0 if current_position > number_of_items - 1
 		current_position = number_of_items - 1 if current_position < 0
 		items_slider.animate
-			'margin-left': -( item_width * current_position )
+			'margin-left': -( item_wrapper_width * current_position )
 			1000
 			
 	# slide left

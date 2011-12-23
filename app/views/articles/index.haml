@@ -9,7 +9,10 @@
 		
 	%body
 		#body-wrapper
-			
+	
+			%header#top-bar-wrapper
+				%header#top-bar			
+	
 			#page-wrapper
 				
 				%header#primary-header-wrapper
@@ -17,10 +20,10 @@
 						%hgroup#primary-title-wrapper
 							%h1#primary-title
 								The Neue York Times
-						%nav#slider-controls
-							#left-control.control
-							#pause-control.control
-							#right-control.control
+						/%nav#slider-controls
+						/	#left-control.control
+						/	#pause-control.control
+						/	#right-control.control
 				
 				#main-area-wrapper
 					#main-area
@@ -48,8 +51,8 @@
 														%li
 															= tag.name
 																
-				%footer#primary-footer-wrapper
-					%footer#primary-footer
+			%footer#primary-footer-wrapper
+				%footer#primary-footer
 													
 		/%p
 		/	= @string
