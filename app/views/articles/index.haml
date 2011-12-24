@@ -5,7 +5,7 @@
 			The Neue York Times
 		= csrf_meta_tag
 		= stylesheet_link_tag "fonts", "application"
-		= javascript_include_tag "application", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"
+		= javascript_include_tag "application", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js", "https://github.com/rails/jquery-ujs.git"
 		
 	%body
 		#body-wrapper
@@ -14,19 +14,19 @@
 			
 			#page-wrapper
 				
-				%header#primary-header-wrapper
-					%header#primary-header
-						%hgroup#primary-title-wrapper
-							%h1#primary-title
-								The Neue York Times
+				/%header#primary-header-wrapper
+				/	%header#primary-header
+				/		%hgroup#primary-title-wrapper
+				/			%h1#primary-title
+				/				The Neue York Times
 				
 				#main-area-wrapper
+					
+					= render :partial => "loading_sign"
+					
 					#main-area
-
+						
 						= render :partial => "slider", :object => @items
 																
 			%footer#primary-footer-wrapper
 				%footer#primary-footer
-													
-		/%p
-		/	= @string
