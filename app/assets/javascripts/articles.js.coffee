@@ -3,6 +3,32 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 drag_and_slide = $ ->
 	drag_and_slide = () ->
+		# THE TWITTER
+		###########################################################
+		
+		# SET INITIAL STATE
+		$('#gray-screen').hide()
+		$('#twitter-login-wrapper').hide()
+		
+		# ON CLICK
+		$('.twitter').click ->
+			$('#gray-screen').css
+				"height": $(document).height()
+			$('#gray-screen').show()
+			
+			
+			console.log "hello twitter click"
+			$('#twitter-login-wrapper').show()
+			
+		$('#gray-screen').click ->
+			$(this).hide()
+			$('#twitter-login-wrapper').hide()
+		#	$.ajax
+		#		url: "articles/tweet"
+		#		type: "POST"
+		
+				
+		
 		# THE DRAGGER
 		###########################################################
 	
@@ -104,6 +130,8 @@ drag_and_slide = $ ->
 		# MISC
 		# the loading sign wrapper for the ajax refresh
 		$('#loading-sign-wrapper').hide()
+	
+	
 	drag_and_slide()
 	
 	# refresh button listeners

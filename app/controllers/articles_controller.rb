@@ -60,6 +60,17 @@ class ArticlesController < ApplicationController
     @items = get_items
     return render :partial => "slider", :object => @items
   end
+  
+  def tweet
+    Twitter.configure do |config|
+      config.consumer_key = "X22BoqxKR8mfLeIeICyaDg"
+      config.consumer_secret = "vcrMnZcSobjNzNP5yTx18Kem67R82jJFhalf4Cjf4"
+      config.oauth_token = "31685427-PUPg3mc7eY1rCCFVXt1XPXQBCpD9rtpikQTWgIZeY"
+      config.oauth_token_secret = "GcOzEaHO5uoeAoXXX45sszhqUJ3UDx3jdsrYi0qFw4"
+    end
+    Twitter.update("I'm tweeting with @gem!")
+    return
+  end
      
   
 end

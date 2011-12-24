@@ -9,7 +9,9 @@
 		
 	%body
 		#body-wrapper
-	
+			
+			#gray-screen
+			
 			= render :partial => "slider_controls" 
 			
 			#page-wrapper
@@ -19,6 +21,8 @@
 				/		%hgroup#primary-title-wrapper
 				/			%h1#primary-title
 				/				The Neue York Times
+				
+				= render :partial => "login"
 				
 				#main-area-wrapper
 					
