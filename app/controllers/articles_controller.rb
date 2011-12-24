@@ -1,6 +1,17 @@
 require 'net/http'
 require 'rexml/document'
 
+class Feed
+  attr_accessor :url
+  attr_accessor :name
+  
+  def initialize( name, url )
+    @url = url
+    @name = name
+  end
+  
+end
+  
 class Item
   attr_accessor :title
   attr_accessor :description
@@ -22,12 +33,20 @@ end
 
 class ArticlesController < ApplicationController
   
-  def get_items
+  def create_feeds
+    
+    feeds = []
+    feeds.push( Feed.new( 'index', 'http://feeds.nytimes.com/nyt/rss/HomePage' ) )
+    feeds.push( Feed.new( 'science', 'http://feeds.nytimes.com/nyt/rss/Science' ) )
+    return feeds
+    
+  end
+  
+  def get_items( url )
     # create the @items instance variable.
     items = []
     
     # go and get the xml.
-    url = "http://feeds.nytimes.com/nyt/rss/HomePage" # define the url.
     xml = Net::HTTP.get_response( URI.parse( url ) ) # get the xml.
     doc = REXML::Document.new( xml.body ) # put the xml in a variable.
     
@@ -51,26 +70,28 @@ class ArticlesController < ApplicationController
     return items
   end
   
+  
     
-  def index      
-    @items = get_items
+  def index
+    url = ""
+    @feeds = create_feeds
+    @feeds.each do |feed|
+      url = feed.url if feed.name == "index"
+    end
+    @items = get_items( url )
   end
   
   def update
-    @items = get_items
+    url = "http://feeds.nytimes.com/nyt/rss/HomePage"
+    requested_feed = params[ :feed ]
+    @feeds = create_feeds
+    @feeds.each do |feed|
+      url = feed.url if requested_feed == feed.name
+    end
+    @items = get_items( url )
     return render :partial => "slider", :object => @items
   end
-  
-  def tweet
-    Twitter.configure do |config|
-      config.consumer_key = "X22BoqxKR8mfLeIeICyaDg"
-      config.consumer_secret = "vcrMnZcSobjNzNP5yTx18Kem67R82jJFhalf4Cjf4"
-      config.oauth_token = "31685427-PUPg3mc7eY1rCCFVXt1XPXQBCpD9rtpikQTWgIZeY"
-      config.oauth_token_secret = "GcOzEaHO5uoeAoXXX45sszhqUJ3UDx3jdsrYi0qFw4"
-    end
-    Twitter.update("I'm tweeting with @gem!")
-    return
-  end
      
-  
+
+
 end

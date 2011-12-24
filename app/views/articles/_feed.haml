@@ -1,0 +1,24 @@
+#feeds-wrapper
+	#feeds
+		
+		%header#feeds-header-wrapper
+			%header#feeds-header
+				
+				%hgroup#feeds-title-wrapper
+					%h1#feeds-title
+						The Neue York Times
+		
+		
+		#feeds-main-area-wrapper
+			#feeds-main-area
+				
+				#feeds-menu-wrapper
+					%ul#feeds-menu
+						- @feeds.each do |feed|
+							%li{ :id => "#{feed.name}-feed", :class => "feed", :'data-kind' => "#{feed.name}" }
+								.feed-button-wrapper
+									.feed-button
+								= feed.name
+								
+							
+						

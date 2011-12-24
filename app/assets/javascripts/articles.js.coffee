@@ -3,29 +3,42 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 drag_and_slide = $ ->
 	drag_and_slide = () ->
-		# THE TWITTER
+		# THE FEEDS
 		###########################################################
 		
 		# SET INITIAL STATE
 		$('#gray-screen').hide()
-		$('#twitter-login-wrapper').hide()
+		$('#feeds-wrapper').hide()
 		
-		# ON CLICK
-		$('.twitter').click ->
+		# LISTENERS
+		# display the feeds menu
+		$('#feeds-button-wrapper').click ->
 			$('#gray-screen').css
 				"height": $(document).height()
 			$('#gray-screen').show()
-			
-			
-			console.log "hello twitter click"
-			$('#twitter-login-wrapper').show()
-			
+			$('#feeds-wrapper').show()
 		$('#gray-screen').click ->
 			$(this).hide()
-			$('#twitter-login-wrapper').hide()
-		#	$.ajax
-		#		url: "articles/tweet"
-		#		type: "POST"
+			$('#feeds-wrapper').hide()
+
+		
+		# menu options
+		$('.feed').click ->
+			$('#gray-screen').hide()
+			$('#feeds-wrapper').hide()
+			$('#loading-sign-wrapper').show()
+			$('#items-wrapper').remove()
+			kind = $(this).data("kind")
+			$.ajax
+				url: '/articles/update',
+				data: { feed: kind }
+				success: (data) ->
+					$('#main-area').html(data)
+					$('#loading-sign-wrapper').hide()
+					drag_and_slide()
+				type: 'POST'		
+	
+
 		
 				
 		
@@ -100,13 +113,13 @@ drag_and_slide = $ ->
 	
 	
 		# Generic control listeners
-		$('.control').live "mousedown", ->
-			$(this).css
-				"background-color:": "rgb(100,100,100)",
-				"border-radius": '25px'
-		$('.control').live "mouseup", ->
-			$(this).css
-				"background-color": "rgba(50,50,50,.5)"
+		#$('.control').live "mousedown", ->
+			#$(this).css
+			#	"background-color:": "rgb(100,100,100)",
+			#	"border-radius": '25px'
+		#$('.control').live "mouseup", ->
+			#$(this).css
+			#	"background-color": "rgba(50,50,50,.5)"
 			
 		# Left click listeners
 		$('#left-control').click ->
@@ -133,18 +146,5 @@ drag_and_slide = $ ->
 	
 	
 	drag_and_slide()
-	
-	# refresh button listeners
-	$('#refresh-control').click ->
-		$('#loading-sign-wrapper').show()
-		$('#items-wrapper').remove()
-		$.ajax
-			url: '/articles/update',
-			success: (data) ->
-				console.log "Hello, AJAX"
-				$('#main-area').html(data)
-				$('#loading-sign-wrapper').hide()
-				drag_and_slide()
-			type: 'POST'
 
 		

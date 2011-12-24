@@ -1,7 +1,6 @@
 TheNeueYorkTimes::Application.routes.draw do
 
   match 'articles/update' => 'articles#update'
-  match 'articles/tweet' => 'articles#tweet'
   :articles
   root :to => "articles#index"
 
