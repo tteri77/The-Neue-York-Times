@@ -21,7 +21,6 @@ class Tag
 end
 
 class ArticlesController < ApplicationController
-  respond_to :html, :js
   
   def get_items
     # create the @items instance variable.
@@ -57,9 +56,10 @@ class ArticlesController < ApplicationController
     @items = get_items
   end
   
-  def render_items
+  def update
     @items = get_items
     return render :partial => "slider", :object => @items
   end
+     
   
 end
