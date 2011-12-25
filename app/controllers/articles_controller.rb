@@ -36,8 +36,12 @@ class ArticlesController < ApplicationController
   def create_feeds
     
     feeds = []
-    feeds.push( Feed.new( 'index', 'http://feeds.nytimes.com/nyt/rss/HomePage' ) )
+    feeds.push( Feed.new( 'front page', 'http://feeds.nytimes.com/nyt/rss/HomePage' ) )
     feeds.push( Feed.new( 'science', 'http://feeds.nytimes.com/nyt/rss/Science' ) )
+    feeds.push( Feed.new( 'space', 'http://feeds.nytimes.com/nyt/rss/Space' ) )
+    feeds.push( Feed.new( 'business', 'http://feeds.nytimes.com/nyt/rss/Business' ) )
+    feeds.push( Feed.new( 'arts', 'http://feeds.nytimes.com/nyt/rss/Arts' ) )
+    
     return feeds
     
   end
@@ -76,7 +80,7 @@ class ArticlesController < ApplicationController
     url = ""
     @feeds = create_feeds
     @feeds.each do |feed|
-      url = feed.url if feed.name == "index"
+      url = feed.url if feed.name == "front page"
     end
     @items = get_items( url )
   end
